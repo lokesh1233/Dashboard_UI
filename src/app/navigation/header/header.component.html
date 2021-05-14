@@ -1,0 +1,29 @@
+<ngx-spinner>
+  <p style="color: white"> Loading Dashboard </p>
+</ngx-spinner>
+<mat-toolbar class="top-portion">
+  <div>
+    <button mat-icon-button (click)="onToggleSidenav()" style="color: #fff;">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div style="margin-left: 40px;">
+    <!-- <a routerLink="/"><img src="/assets/images/profile.png"></a> -->
+    <!-- <a ><img src="/assets/images/profile.png"></a> -->
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="!isAuth">
+        <a routerLink="/signup"><img src="/assets/images/training.png"></a>
+      </li>
+      <li *ngIf="!isAuth">
+        <a routerLink="/login"><img src="/assets/images/logout.png"></a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>
+<div class="ifram">
+  <!-- <iframe name="Framename" src="https://allwebco-templates.com/support/" frameborder="0" scrolling="auto" class="frame-area">
+  </iframe> -->
+  
+</div>

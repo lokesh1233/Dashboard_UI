@@ -1,0 +1,113 @@
+<div>
+  <div>
+    <span style="float: right; cursor: pointer;" (click)="closeModel()"><i class="fa fa-times" aria-hidden="true"></i></span>
+  </div>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Full name</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.employeefullname" required/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Employee Id</mat-label>
+    <input matInput disabled="{{newData}}" [(ngModel)]="employeeData.empid" required/>
+  </mat-form-field>
+
+  <!-- <mat-form-field class="full-width-field">
+    <mat-label>Email</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.email"/>
+  </mat-form-field> -->
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Email</mat-label>
+    <input matInput disabled="{{edit}}"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+    required [(ngModel)]="employeeData.email"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Band description</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.banddescription"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Band code</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.bandcode"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Business unit name</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.businessunitname"/>
+  </mat-form-field>
+
+  <!-- <mat-form-field class="full-width-field">
+    <mat-label>Date of birth</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.dateofbirth"/>
+  </mat-form-field> -->
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Date of birth</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.dateofbirth" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- <mat-form-field class="full-width-field">
+    <mat-label>Date of joining</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.dateofjoining"/>
+  </mat-form-field> -->
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Department</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.department"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Band id</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.employeebandid"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>First name</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.firstname"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Middle name</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.middlename"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Last name</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.lastname"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Gender</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.gender"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Mobile</mat-label>
+    <input matInput type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="myId" disabled="{{edit}}" [(ngModel)]="employeeData.mobileno"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Manager name</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.managername"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Manager id</mat-label>
+    <input matInput disabled="{{edit}}" [(ngModel)]="employeeData.managerid"/>
+  </mat-form-field>
+
+  <mat-checkbox disabled="{{edit}}" [(ngModel)]="employeeData.isactive">Active</mat-checkbox>
+
+
+<div mat-dialog-actions>
+  <!-- <button mat-button cdkFocusInitial (click)="editQna()" style="margin-left: 134px;background-color: #daefff;" *ngIf="!datafromtest"><i class="fa fa-floppy-o" aria-hidden="true"></i></button> -->
+
+  <button mat-button cdkFocusInitial *ngIf="edit == false" (click)="addQna()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+</div>
+</div>

@@ -1,0 +1,24 @@
+
+language: en
+pipeline:
+  - name: TFDataset
+    - name: SentencePreProcess
+      characters: RegExpressionSpaceWithChar
+      tokenizer: wordTokenizer
+    maxLength: 40
+    batchSize: 32
+    bufferSize: 200
+  - name: transformerModel
+    layers: 2
+    D_MODEL: 128
+    heads: 8
+    units: 512
+    dropout: 0.1
+    maxLength: 40
+    epochs: 200
+  - name: AdamOptimizer
+    learningRate: CustomSchedule
+    beta_1: 0.9
+    beta_2: 0.98
+    lossFunction: SparseCategoricalCrossentropy
+    accuracy: SparseCategoricalAccuracy

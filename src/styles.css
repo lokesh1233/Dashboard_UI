@@ -1,0 +1,199 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/font-awesome/css/font-awesome.css";
+html, body { height: 100%; }
+body { margin: 0; 
+    /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
+    font-family: 'Montserrat', sans-serif;
+}
+h1,h2,h3,h4,h5,h6,label,th,td,input{
+    font-family: 'Montserrat', sans-serif !important;
+}
+table i{
+    color: #3f51b5;
+}
+
+
+
+/* alignment issue table fixed on 16/10/2020 */
+.table_indox thead tr,
+.table_data thead tr,
+.table_models thead tr
+{
+    height: 40px;
+    box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.1) !important;
+}
+.table_indox thead tr th,
+.table_data thead tr th,
+.table_models thead tr th
+{
+    padding: 6px 8px !important;
+    height: 40px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.table_data thead tr th div button,
+.table_models thead tr th div button
+{
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.table_indox thead tr th:nth-child(1),
+.table_data thead tr th:nth-child(1),
+.table_models thead tr th:nth-child(1)
+{
+  width: 30% !important;
+  min-width: max-content !important;
+  max-width: 30% !important;
+
+}
+.table_data thead tr th:nth-child(2),
+.table_models thead tr th:nth-child(2)
+{
+    width: 60% !important;
+  min-width: max-content !important;
+  max-width: 60% !important;
+}
+.table_indox thead tr th:nth-child(2)
+{
+  width: 55% !important;
+  min-width: max-content !important;
+  max-width: 55% !important;
+}
+.table_data thead tr th:nth-child(3),
+.table_models thead tr th:nth-child(3)
+{
+    width: 10% !important;
+  min-width: max-content !important;
+  max-width: 10% !important;
+}
+.table_indox thead tr th:nth-child(3)
+{
+    width: 6% !important;
+  min-width: max-content !important;
+  max-width: 6% !important;
+}
+.table_indox thead tr th:nth-child(4)
+{
+    width: 9% !important;
+  min-width: max-content !important;
+  max-width: 9% !important;
+}
+
+.table_models tbody tr td:nth-child(3) mat-form-field
+{
+    width: 20px !important;
+    height: 25px !important;
+}
+.table_models tbody tr td:nth-child(3) mat-form-field .mat-form-field-wrapper 
+{
+    padding: 0 !important;
+}
+.table_models tbody tr td:nth-child(3) mat-form-field .mat-form-field-wrapper .mat-form-field-infix 
+{
+    border: none !important;
+}
+.table_models tbody tr td:nth-child(3) mat-form-field .mat-form-field-wrapper .mat-form-field-infix .mat-icon
+{
+    font-size: 18px;
+}
+
+
+
+
+.mat_custom_form .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix
+{
+    padding-bottom: 0;
+}
+
+table.mat-elevation-z8{
+    box-shadow: none !important;
+    box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.1) !important;
+}
+.mat-tab-body-content {
+    padding: 0 15px;
+  }
+  table{
+    border: none !important;
+   
+}
+table tbody tr{
+    background: transparent !important;
+}
+[mat-row] {
+    background: unset !important;
+}
+.mat-table tbody, .mat-table tfoot, .mat-table thead, .mat-table-sticky, [mat-footer-row], [mat-header-row], [mat-row], mat-footer-row, mat-header-row, mat-row {
+    background: unset !important;
+}
+
+table thead tr th:first-child
+{
+    padding-left: 20px !important;
+  }
+  table tbody tr td:first-child{
+
+    padding: 6px 0 6px 20px !important;
+  }
+  table tbody tr td{
+      vertical-align: middle !important;
+  }
+  table{
+      border-radius: 8px !important;
+      overflow: hidden;
+  }
+
+  .display_button
+  {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  textarea.mat-input-element{
+      border-bottom: 1px solid #cacaca;
+      resize: none !important;
+      font-family: 'Montserrat', sans-serif !important;
+  }
+  input.mat-input-element:not(.filter_input_field){
+    border-bottom: 1px solid #cacaca;
+    font-family: 'Montserrat', sans-serif !important;
+    padding-bottom: 8px; 
+
+    
+}
+#employeelist .table_indox thead tr th{
+    background-color: #ffffff;
+    height: 50px;
+    vertical-align: middle;
+    border: none;
+    color: #108feb;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+#employeelist .table_indox thead tr th:nth-child(1)
+{
+  width: 15% !important;
+  min-width: max-content !important;
+  max-width: 15% !important;
+}
+#employeelist .table_indox thead tr th:nth-child(2)
+{
+  width: 10% !important;
+  min-width: max-content !important;
+  max-width: 10% !important;
+}
+#employeelist .table_indox thead tr th:nth-child(3)
+{
+  width: 20% !important;
+  min-width: max-content !important;
+  max-width: 20% !important;
+}
+#employeelist .table_indox thead tr th:nth-child(4)
+{
+  width: 15% !important;
+  min-width: max-content !important;
+  max-width: 15% !important;
+}

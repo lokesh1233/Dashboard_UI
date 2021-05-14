@@ -1,0 +1,109 @@
+<ngx-spinner>
+  <p style="color: white"> Loading Dashboard </p>
+</ngx-spinner>
+
+<div id="employeelist" class="content">
+  <div class="box">
+    <div class="col-md-12">
+          <div class="example-header">
+<div class="filter_section_container">
+  <input matInput (keyup)="applyFilter($event.target.value)" class="filter_input_field" aria-placeholder="filter" placeholder="Filter">
+  <!-- <mat-form-field class="mat_custom_form" style="margin-left: 10px;">
+        <mat-select  [(ngModel)]="defaultInboxType" (selectionChange)="changeFilter($event.value)">
+          <mat-option value="portal">
+            Portal
+          </mat-option>
+          <mat-option value="bot">
+            Bot
+          </mat-option>
+          <mat-option value="type">
+            Select type
+          </mat-option>
+        </mat-select>
+  </mat-form-field> -->
+</div>
+            
+
+            <div class="header_right">
+              <button type="button" class="btn btn-warning" (click)="downloadTemplate()"> <i
+                  class="fas fa-download"></i> <span class="button_tooltip">Download Template</span></button>
+              <!-- <button type="button" class="btn btn-warning" (click)="fileUploadInbox()" style="
+  margin-left: 180px;">
+  <i class="fa fa-file" aria-hidden="true"></i></button> -->
+              <div class="upload_field_wrapper btnposition">
+                <input class="ng-hide" style="display: none;" id="inbox-file-id" accept=".csv" type="file"
+                  (change)="fileEmpUploadData($event.target)" name="EmpUpload" />
+                <label for="inbox-file-id" class="md-button md-raised md-primary btn btn-warning custbtn"
+                  style="cursor: pointer;"> <i class="fas fa-upload"></i></label>
+                  <span class="button_tooltip">Upload Bulk Employee details</span>
+              </div>
+              <button type="button" class="btn btn-warning" (click)="openewDilaog()" style="margin-left: 10px;">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span class="button_tooltip">Add Employee details </span>
+              </button>
+
+              <!-- <button type="button" class="btn btn-warning" style="margin-left: 10px;">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+              </button> -->
+              <button type="button" class="btn btn-warning" (click)="getEmpDetails()" style="margin-left: 10px;">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <span class="button_tooltip">Refresh</span>
+              </button>
+            </div>
+
+          </div>
+          <table mat-table [dataSource]="dataSource" class="table employelist table_indox table-bordered mat-elevation-z8"
+            [ngClass]="{'data-selected':isSelected}">
+
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="defaultFullName">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.employeefullname}} </td>
+            </ng-container>
+
+            <!-- user Id Column -->
+            <ng-container matColumnDef="userId">
+              <th mat-header-cell *matHeaderCellDef> User Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.empid}} </td>
+            </ng-container>
+
+            <!-- email Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <!-- location Column -->
+            <ng-container matColumnDef="location">
+              <th mat-header-cell *matHeaderCellDef> Location </th>
+              <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+            </ng-container>
+
+            <!-- actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let element">
+                <i class="fa fa-eye" (click)="openeditDilog(element, false)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i> &nbsp;
+                <i class="fa fa-pencil" (click)="openeditDilog(element, true)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i> &nbsp;
+                <!-- <i class="fa fa-eye" aria-hidden="true" style="padding: 2px"></i>  -->
+                <!-- <i class="fa fa-trash" (click)="openDelDailog(element, true)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i> -->
+                  <mat-checkbox [(ngModel)]="element.isactive" (change)="changActivation(element)"></mat-checkbox>
+                </td>
+
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- <tr mat-row [ngClass]="{'make-darkgrey': row.source_type != 'portal'}" -->
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[10,2, 20]" #paginator showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,395 @@
+<ngx-spinner>
+  <p style="color: white"> Loading Dashboard </p>
+</ngx-spinner>
+
+<!-- <mat-toolbar class="top-portion">
+  <div>
+    <button mat-icon-button (click)="onToggleSidenav()" style="color: #fff;">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div style="margin-left: 40px;">
+    <a routerLink="/"><img src="/assets/images/profile.png"></a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="!isAuth">
+        <a routerLink="/signup"><img src="/assets/images/training.png"></a>
+      </li>
+      <li *ngIf="!isAuth">
+        <a routerLink="/login"><img src="/assets/images/logout.png"></a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar> -->
+<div class="content">
+  <!-- <div class="box">
+    <div class="builder-form">
+      <div class="col-md-6 form-group">
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <div class="col-md-6 form-group">
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="col-md-12 button">
+      <button type="button" class="btn btn-warning">Train</button>
+      <button type="button" class="btn btn-success">Save</button>
+    </div>
+  </div> -->
+  <div class="box">
+    <div class="col-md-12">
+      <!-- <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>john@example.com</td>
+          </tr>
+          <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+          </tr>
+          <tr>
+            <td>July</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+          </tr>
+        </tbody>
+      </table> -->
+      <mat-tab-group>
+        <mat-tab label="Queries">
+          <!-- <div class="col-md-1 button" style="margin-right: 10px;height: 28px;">
+            <button type="button" class="btn btn-warning" (click)="openDialogInbox()" style="margin-right: 43px;"><i
+                class="fa fa-plus" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-warning" style="margin-top: -21px;margin-right: -36px;"><i class="fa fa-cog"
+                  aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-warning"(click)="getQna()" style="margin-top: px;margin-right: 3px;margin-top: -21px;"><i class="fa fa-refresh"
+                    aria-hidden="true"></i></button>
+          </div> -->
+          <div class="example-header">
+<div class="filter_section_container">
+  <input matInput (keyup)="applyFilter1($event.target.value)" class="filter_input_field" aria-placeholder="filter" placeholder="Filter">
+  <mat-form-field class="mat_custom_form" style="margin-left: 10px;">
+    <!-- <mat-form-field *ngIf="element.isActive == false"> -->
+      <!-- <div class="filter_container"> -->
+        <!-- <mat-icon>filter_list</mat-icon> -->
+        <mat-select  [(ngModel)]="defaultInboxType" (selectionChange)="changeFilter1($event.value)">
+          <mat-option value="portal">
+            Portal
+          </mat-option>
+          <mat-option value="bot">
+            Bot
+          </mat-option>
+          <mat-option value="type">
+            Select type
+          </mat-option>
+        </mat-select>
+        <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+      <!-- </div> -->
+    <!-- </mat-form-field> -->
+  </mat-form-field>
+</div>
+            
+
+            <div class="header_right">
+              <button type="button" class="btn btn-warning" (click)="downloadTemplate()"> <i
+                  class="fas fa-download"></i> <span class="button_tooltip">Download Template</span></button>
+              <!-- <button type="button" class="btn btn-warning" (click)="fileUploadInbox()" style="
+  margin-left: 180px;">
+  <i class="fa fa-file" aria-hidden="true"></i></button> -->
+              <div class="upload_field_wrapper btnposition">
+                <input class="ng-hide" style="display: none;" id="inbox-file-id" accept=".csv" type="file"
+                  (change)="fileUploadData($event.target, true)" name="QABotInbox" />
+                <label for="inbox-file-id" class="md-button md-raised md-primary btn btn-warning custbtn"
+                  style="cursor: pointer;"> <i class="fas fa-upload"></i></label>
+                  <span class="button_tooltip">Upload Bulk Q&A</span>
+              </div>
+
+              <button type="button" class="btn btn-warning" (click)="openDialogInbox()" style="margin-left: 10px;">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span class="button_tooltip">Add New Q&A</span>
+              </button>
+
+              <!-- <button type="button" class="btn btn-warning" style="margin-left: 10px;">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+              </button> -->
+              <button type="button" class="btn btn-warning" (click)="getQnaInbox()" style="margin-left: 10px;">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <span class="button_tooltip">Refresh</span>
+              </button>
+            </div>
+
+          </div>
+          <table mat-table [dataSource]="dataSource1" class="table table_indox table-bordered mat-elevation-z8"
+            [ngClass]="{'data-selected':isSelected}">
+
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- questions Column -->
+            <ng-container matColumnDef="questions">
+              <th mat-header-cell *matHeaderCellDef>Questions</th>
+              <td mat-cell *matCellDef="let element"> {{element.question}} </td>
+            </ng-container>
+
+            <!-- answers Column -->
+            <ng-container matColumnDef="answers">
+              <th mat-header-cell *matHeaderCellDef> Answers </th>
+              <td mat-cell *matCellDef="let element"> {{element.answer}} </td>
+            </ng-container>
+
+            <!-- type Column -->
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef> Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.source_type}} </td>
+            </ng-container>
+
+            <!-- actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let element">
+                <i class="fa fa-check" (click)="saveToData(element)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i> &nbsp;
+                <i class="fa fa-pencil" (click)="openeditDilog(element, true)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i> &nbsp;
+                <!-- <i class="fa fa-eye" aria-hidden="true" style="padding: 2px"></i>  -->
+                <i class="fa fa-trash" (click)="openDelDailog(element, true)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <!-- <tr mat-row [ngClass]="{'make-darkgrey': row.source_type != 'portal'}" -->
+            <tr mat-row
+              *matRowDef="let row; columns: displayedColumns1;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[10,2, 20]" #paginator1 showFirstLastButtons></mat-paginator>
+        </mat-tab>
+        <mat-tab label="Training Data">
+          <!-- <div class="col-md-1 button" style="margin-right: 10px;height: 28px;">
+            <button type="button" class="btn btn-warning" (click)="openDialog()" style="margin-right: 43px;"><i
+                class="fa fa-plus" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-warning" style="margin-top: -21px;margin-right: -36px;"><i
+                class="fa fa-cog" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-warning" (click)="getQnaInbox()"
+              style="margin-top: px;margin-right: 3px;margin-top: -21px;"><i class="fa fa-refresh"
+                aria-hidden="true"></i></button>
+          </div> -->
+
+          <div class="example-header">
+            <div class="filter_section_container">
+              <input matInput (keyup)="applyFilter($event.target.value)" class="filter_input_field" aria-placeholder="filter"  placeholder="Filter">
+              <mat-form-field class="mat_custom_form" style="margin-left: 10px;">
+                <!-- <div class="filter_container"> -->
+                  <!-- <mat-icon>filter_list</mat-icon> -->
+                <mat-select [(ngModel)]="defaultDataType" (selectionChange)="changeFilter($event.value)">
+                  <mat-option value="portal">
+                    Portal
+                  </mat-option>
+                  <mat-option value="bot">
+                    Bot
+                  </mat-option>
+                  <mat-option value="type">
+                    Select type
+                  </mat-option>
+                </mat-select>
+                <!-- </div> -->
+              </mat-form-field>
+            </div>
+            <div class="header_right">
+              <button type="button" class="btn btn-warning" (click)="downloadTemplate()"><i
+                class="fas fa-download"></i><span class="button_tooltip">Download Template</span></button>
+
+                <div class="upload_field_wrapper btnposition">
+                  <input class="ng-hide" style="display: none;" id="input-file-id" accept=".csv" type="file"
+                  (change)="fileUploadData($event.target, false)" />
+                <label for="input-file-id" class="md-button md-raised md-primary btn btn-warning custbtn" style="cursor: pointer;">
+                  <i class="fas fa-upload"></i></label>
+                  <span class="button_tooltip">Upload Bulk Q&A</span>
+                </div>
+    
+  
+              <button type="button" class="btn btn-warning" (click)="openDialog()" style="
+              margin-left: 10px;
+          "><i class="fa fa-plus" aria-hidden="true"></i><span class="button_tooltip">Add New Q&A</span></button>
+              <!-- <button type="button" class="btn btn-warning" style="margin-left: 10px;">
+                <i class="fa fa-cog" aria-hidden="true"></i><span class="button_tooltip">Settings</span></button> -->
+              <button type="button" class="btn btn-warning" (click)="getQna()" style="margin-left: 10px;">
+                <i class="fa fa-refresh" aria-hidden="true"></i><span class="button_tooltip">Refresh</span></button>
+            </div>
+           
+          </div>
+
+          <table mat-table [dataSource]="dataSource" matSort matSortStart="desc"
+            class="table table-bordered mat-elevation-z8 table_data">
+
+            <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Questions Column -->
+            <ng-container matColumnDef="questions">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Questions</th>
+              <td mat-cell *matCellDef="let element"> {{element.question}} </td>
+            </ng-container>
+
+            <!-- answers Column -->
+            <ng-container matColumnDef="answers">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Answers </th>
+              <td mat-cell *matCellDef="let element"> {{element.answer}} </td>
+            </ng-container>
+
+            <!-- type Column -->
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef> Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.source_type == 'portal' ? 'portal':'bot'}} </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let element">
+                <i class="fa fa-pencil" (click)="openeditDilog(element, false)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i> &nbsp;&nbsp;
+                <!-- <i class="fa fa-eye" aria-hidden="true" style="padding: 2px"></i>  -->
+                <i class="fa fa-trash" (click)="openDelDailog(element, false)" aria-hidden="true"
+                  style="font-size: 15px; cursor: pointer;"></i></td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- <tr mat-row [ngClass]="{'make-darkgrey': row.source_type != 'portal'}" -->
+            <tr mat-row 
+              *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[10,7, 20]" #paginator2 showFirstLastButtons></mat-paginator>
+        </mat-tab>
+        <mat-tab label="Models">
+
+          <div class="example-header">
+            <mat-form-field>
+              <input matInput (keyup)="applyMdlFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+            <!-- <button type="button" class="btn btn-warning" (click)="openDialog()" style="
+            margin-left: 200px;"><i class="fa fa-plus" aria-hidden="true"></i></button> -->
+            <div class="training_button_wrapper">
+
+            
+            <button *ngIf="isModelTraining == true" type="button" class="btn btn-warning training_animation training_animation_active" style="margin-left: 25px; cursor: not-allowed;"> 
+              <!-- new -->
+              
+<div class="loader_animation">
+  <div class="loader_animation_container">
+  <ul class="loader_animation_list_holder">
+  <li>
+  <svg viewBox="0 0 90 120" fill="currentColor">
+  <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+  </svg>
+  </li>
+  <li>
+  <svg viewBox="0 0 90 120" fill="currentColor">
+  <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+  </svg>
+  </li>
+  <li>
+  <svg viewBox="0 0 90 120" fill="currentColor">
+  <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+  </svg>
+  </li>
+  <li>
+  <svg viewBox="0 0 90 120" fill="currentColor">
+  <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+  </svg>
+  </li>
+  <li>
+  <svg viewBox="0 0 90 120" fill="currentColor">
+  <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+  </svg>
+  </li>
+  <li>
+  <svg viewBox="0 0 90 120" fill="currentColor">
+  <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+  </svg>
+  </li>
+  </ul>
+  </div>
+</div>
+              <!-- new -->
+              <span>Training...</span>
+              <!-- <i class="fa fa-cogs" aria-hidden="true"></i> -->
+            </button>
+
+            <button *ngIf="isModelTraining == false" type="button" class="btn btn-warning" style="margin-left: 25px;" (click)="trainModel()"> 
+              <span style="margin-right: 6px;">Train</span>
+              <!-- <i class="fa fa-cogs" aria-hidden="true"><span class="button_tooltip">Training</span></i> -->
+            </button>
+            <button type="button" class="btn btn-warning" (click)="getModels()" style="margin-left: 10px;">
+              <i class="fa fa-refresh" aria-hidden="true"></i><span class="button_tooltip">Refresh</span>
+            </button>
+          </div>
+          </div>
+
+          <table mat-table [dataSource]="modelSource" matSort matSortStart="desc"
+            class="table table-bordered mat-elevation-z8 table_models">
+
+            <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="model">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Model</th>
+              <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="comment">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let element">
+                <!-- <i class="fa fa-ellipsis-h" (click)="changeModelActivation(element)" aria-hidden="true" *ngIf="element.isActive == false"
+                  style="font-size: 15px; cursor: pointer;"></i> -->
+                <mat-form-field *ngIf="element.isActive == false">
+                  <mat-icon>check_box_outline_blank</mat-icon>
+                  <mat-select class="alarm-dropdown" (selectionChange)="changeModelActivation($event)">
+                    <mat-option [value]="element.model">
+                      Make active
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                &nbsp;&nbsp;
+                <span class="active_activeClass" *ngIf="element.isActive == true">Active</span>
+                <mat-form-field *ngIf="element.isActive == false">
+                  <mat-icon>restore_from_trash</mat-icon>
+                  <mat-select class="alarm-dropdown" (selectionChange)="deleteModel($event)">
+                    <mat-option [value]="element.model">
+                      Delete
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+          </table>
+        </mat-tab>
+        <!-- <mat-tab label="Configuration">
+          <pre>
+            {{configYamlFile}}
+            </pre>
+        </mat-tab> -->
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

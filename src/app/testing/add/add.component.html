@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <span style="float: right; cursor: pointer;" (click)="closeModel()"><i class="fa fa-times" aria-hidden="true"></i></span>
+  </div>
+  <form [formGroup]="QuestionForm" (ngSubmit)="addQna()">
+  <mat-form-field class="full-width-field">
+    <mat-label>Question</mat-label>
+    <textarea matInput formControlName="question" [(ngModel)]="question" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-field">
+    <mat-label>Answer</mat-label>
+    <textarea matInput formControlName="answer" [(ngModel)]="answer" required></textarea>
+  </mat-form-field>
+<div mat-dialog-actions style="float: left;">
+  <!-- <button mat-button cdkFocusInitial (click)="editQna()" style="margin-left: 134px;background-color: #daefff;" *ngIf="!datafromtest"><i class="fa fa-floppy-o" aria-hidden="true"></i></button> -->
+
+  <!-- <button mat-button cdkFocusInitial (click)="addQna()" style="margin-left: 134px;background-color: #daefff;"><i class="fa fa-floppy-o" aria-hidden="true"></i></button> -->
+  <button [disabled]="QuestionForm.invalid" type="submit" mat-button cdkFocusInitial style="margin-left: 134px;background-color: #daefff;"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+</div>
+</form>
+</div>
